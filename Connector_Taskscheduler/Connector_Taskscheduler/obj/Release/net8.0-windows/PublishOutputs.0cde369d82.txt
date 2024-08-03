@@ -1,0 +1,17 @@
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Connector_Taskscheduler.exe
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Connector_Taskscheduler.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Connector_Taskscheduler.deps.json
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Connector_Taskscheduler.runtimeconfig.json
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Connector_Taskscheduler.pdb
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.Configuration.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.Configuration.Json.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.FileProviders.Physical.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Microsoft.Extensions.Primitives.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\Newtonsoft.Json.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\System.Text.Encodings.Web.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\System.Text.Json.dll
+D:\Mohan\Conn_Scheduler_Exec\Conn_job_publish\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
