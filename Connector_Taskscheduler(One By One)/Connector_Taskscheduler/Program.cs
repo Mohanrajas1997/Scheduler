@@ -49,9 +49,8 @@ class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-                Console.ReadLine();
-
             }
+            Environment.Exit(0);
         }
 
         static async Task CallSecondApiAsync(int schedulerGid, string pipelineCode, string initiatedby)
@@ -113,13 +112,13 @@ class Program
                     }
                 }
 
-                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error calling second API: {ex.Message}");
-                Console.ReadLine();
+
             }
+            Environment.Exit(0);
         }
 
         static async Task LockScheduler(int schedulerGid, string scheduler_status, string initiatedby)
@@ -144,7 +143,6 @@ class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"Error calling second API: {ex.Message}");
-                Console.ReadLine();
             }
         }
 
@@ -187,8 +185,6 @@ class Program
         }
 
     }
-
-
     static void LogError(Exception ex)
     {
         string logFilePath = AppConfig._LogPath;
