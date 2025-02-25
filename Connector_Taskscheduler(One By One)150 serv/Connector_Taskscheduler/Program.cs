@@ -8,18 +8,23 @@ using System.Net.Http.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
-class Program
+
+public class Program
 {
+    //private static readonly string url = "http://150.230.238.12/ConnectorDevApi/";
+    private static readonly string url = "http://localhost:5786/";
 
     public static async Task Main(string[] args)
     {
+
 
         using (HttpClient httpClient = new HttpClient())
         {
             try
             {
                 // Replace "your-api-url" with the actual URL of the API you want to call
-                string apiUrl = "http://150.230.238.12/ConnectorDevApi/Pipeline/GetSchedulerList"; //AppConfig._GetSch_ApiUrl;
+                //string apiUrl = "http://150.230.238.12/ConnectorDemoApi/Pipeline/GetSchedulerList"; //AppConfig._GetSch_ApiUrl;
+                string apiUrl = url + "Pipeline/GetSchedulerList"; //AppConfig._GetSch_ApiUrl;
 
                 // Make the GET request
                 HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
@@ -43,15 +48,14 @@ class Program
                 }
                 else
                 {
-                    Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    //Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-                Console.ReadLine();
-
             }
+            Environment.Exit(0);
         }
 
         static async Task CallSecondApiAsync(int schedulerGid, string pipelineCode, string initiatedby)
@@ -67,7 +71,8 @@ class Program
                     string schedulerStatusParam = "scheduler_status=Locked";
                     string initiatedByParam = "initiated_by=" + initiatedby;
 
-                    string lckSchdApiUrl = "http://150.230.238.12/ConnectorDevApi/Pipeline/UpdateScheduler?" +
+                    //string lckSchdApiUrl = "http://150.230.238.12/ConnectorDemoApi/Pipeline/UpdateScheduler?" +
+                    string lckSchdApiUrl = url + "Pipeline/UpdateScheduler?" +
                                            schedulerGidParam + "&" +
                                            schedulerStatusParam + "&" +
                                            initiatedByParam;
@@ -84,7 +89,8 @@ class Program
                             // Set timeout to 5 minutes (300 seconds)
                             httpClient1.Timeout = TimeSpan.FromSeconds(300);
 
-                            string secondApiUrl = "http://150.230.238.12/ConnectorDevApi/Pipeline/TGDS_Taskscheduler";// AppConfig._TGS_ApiUrl;
+                            //string secondApiUrl = "http://150.230.238.12/ConnectorDemoApi/Pipeline/TGDS_Taskscheduler";// AppConfig._TGS_ApiUrl;
+                            string secondApiUrl = url + "Pipeline/TGDS_Taskscheduler";// AppConfig._TGS_ApiUrl;
 
                             // Prepare the payload for the second API
                             var payload = new { scheduler_gid = schedulerGid, pipeline_code = pipelineCode, initiated_by = initiatedby };
@@ -92,7 +98,8 @@ class Program
                             // Make the POST request to the second API
                             HttpResponseMessage secondApiResponse = await httpClient1.PostAsJsonAsync(secondApiUrl, payload);
 
-                            string apiUrlForResch = "http://150.230.238.12/ConnectorDevApi/Pipeline/Reschedulefornexttime?pipelinecode=" + Uri.EscapeDataString(pipelineCode);
+                            //string apiUrlForResch = "http://150.230.238.12/ConnectorDemoApi/Pipeline/Reschedulefornexttime?pipelinecode=" + Uri.EscapeDataString(pipelineCode);
+                            string apiUrlForResch = url + "Pipeline/Reschedulefornexttime?pipelinecode=" + Uri.EscapeDataString(pipelineCode);
 
                             // Make the GET request and await the response
                             HttpResponseMessage reschedApiResponse = await httpClient1.GetAsync(apiUrlForResch);
@@ -101,8 +108,8 @@ class Program
                             if (reschedApiResponse.IsSuccessStatusCode)
                             {
                                 // Read the content of the response
-                                string reschedApiContent = await reschedApiResponse.Content.ReadAsStringAsync();
-                                Console.WriteLine($"Reschedule API Response: {reschedApiContent}");
+                                //string reschedApiContent = await reschedApiResponse.Content.ReadAsStringAsync();
+                                //Console.WriteLine($"Reschedule API Response: {reschedApiContent}");
                             }
                             else
                             {
@@ -112,14 +119,13 @@ class Program
                         }
                     }
                 }
-
-                
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error calling second API: {ex.Message}");
-                Console.ReadLine();
             }
+            Environment.Exit(0);
+
         }
 
         static async Task LockScheduler(int schedulerGid, string scheduler_status, string initiatedby)
@@ -131,7 +137,8 @@ class Program
                     // Set timeout to 5 minutes (300 seconds)
                     httpClient.Timeout = TimeSpan.FromSeconds(300);
 
-                    string lckSchdApiUrl = "http://150.230.238.12/ConnectorDevApi/Pipeline/UpdateScheduler";// AppConfig._TGS_ApiUrl;
+                    //string lckSchdApiUrl = "http://150.230.238.12/ConnectorDemoApi/Pipeline/UpdateScheduler";// AppConfig._TGS_ApiUrl;
+                    string lckSchdApiUrl = url + "Pipeline/UpdateScheduler";// AppConfig._TGS_ApiUrl;
 
                     // Prepare the payload for the second API
                     var payload = new { scheduler_gid = schedulerGid, scheduler_status = scheduler_status, initiated_by = initiatedby };
@@ -144,7 +151,6 @@ class Program
             catch (Exception ex)
             {
                 Console.WriteLine($"Error calling second API: {ex.Message}");
-                Console.ReadLine();
             }
         }
 
@@ -157,7 +163,8 @@ class Program
 
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    string ApiUrl = "http://150.230.238.12/ConnectorDevApi/Pipeline/GetSourcedbType_pplcode?pipeline_code=" + pipelineCode;// AppConfig._TGS_ApiUrl;
+                    //string ApiUrl = "http://150.230.238.12/ConnectorDemoApi/Pipeline/GetSourcedbType_pplcode?pipeline_code=" + pipelineCode;// AppConfig._TGS_ApiUrl;
+                    string ApiUrl = url + "Pipeline/GetSourcedbType_pplcode?pipeline_code=" + pipelineCode;// AppConfig._TGS_ApiUrl;
                                                                                                                            // Make GET request to the second API
                     HttpResponseMessage response = await httpClient.GetAsync(ApiUrl);
 
